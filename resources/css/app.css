@@ -1,0 +1,5 @@
+/* template css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "./template/bootstrap/bootstrap.css";
+@import "./template/fontawesome.css";
+@import "./template/style.css";
