@@ -1,9 +1,12 @@
 <template>
-    <main class="main-content">
+
+    <Head :title="capitalizeFirstLetter(title)"></Head>
+
+    <main class=" main-content">
         <div class="signUP-admin">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-5 col-md-5 p-0">
+                    <div class="col-xl-6 col-lg-5 col-md-5 p-0">
                         <div class="signUP-admin-left position-relative">
                             <div class="signUP-overlay">
                                 <img class="svg signupTop" src="img/svg/signuptop.svg" alt="img" />
@@ -40,3 +43,7 @@
         </span>
     </div>
 </template>
+
+<script setup>
+const title = window.location.pathname.split("/").pop()
+</script>

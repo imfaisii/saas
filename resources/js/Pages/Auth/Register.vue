@@ -1,10 +1,7 @@
 <template>
-
-    <!-- <Head title="Register"></Head> -->
-
     <AuthLayout>
         <template v-slot:body>
-            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-8">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8">
                 <div class="signUp-admin-right p-md-40 p-10">
                     <div
                         class="signUp-topbar d-flex align-items-center justify-content-md-end justify-content-center mt-md-0 mb-md-0 mt-20 mb-1">
@@ -25,67 +22,82 @@
                                             </h6>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row edit-profile__body">
-                                            <div class="col-md-6 mb-1">
-                                                <div class="form-group mb-20">
-                                                    <label for="name">name</label>
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="Full Name" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-1">
-                                                <div class="form-group mb-20">
-                                                    <label for="username">username</label>
-                                                    <input type="text" class="form-control" id="username"
-                                                        placeholder="Username" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-1">
-                                                <div class="form-group mb-20">
-                                                    <label for="email">Email Adress</label>
-                                                    <input type="text" class="form-control" id="email"
-                                                        placeholder="name@example.com" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-1">
-
-                                                <div class="form-group mb-15">
-                                                    <label for="password-field">password</label>
-                                                    <div class="position-relative">
-                                                        <input id="password-field" type="password" class="form-control"
-                                                            name="password" value="secret" />
-                                                        <span
-                                                            class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2"></span>
+                                    <form @submit.prevent="submit">
+                                        <div class="card-body">
+                                            <div class="row edit-profile__body">
+                                                <div class="col-md-6 mb-1">
+                                                    <div class="form-group mb-20">
+                                                        <label for="name">name</label>
+                                                        <input v-model="form.name" type="text" class="form-control"
+                                                            placeholder="Full Name" />
+                                                        <IError class="mt-2" :message="form.errors.name"></IError>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12 mb-1 ml-1">
-                                                <div class="signUp-condition">
-                                                    <div class="checkbox-theme-default custom-checkbox">
-                                                        <input class="checkbox" type="checkbox" id="check-1" />
-                                                        <label for="check-1">
-                                                            <span class="checkbox-text">Creating an account
-                                                                means you’re okay with
-                                                                our
-                                                                <a href="#" class="color-secondary">Terms of Service</a>
-                                                                and
-                                                                <a href="#" class="color-secondary">Privacy Policy</a>
-                                                                my preference</span>
-                                                        </label>
+                                                <div class="col-md-6 mb-1">
+                                                    <div class="form-group mb-20">
+                                                        <label for="email">Email Adress</label>
+                                                        <input v-model="form.email" type="email" class="form-control"
+                                                            placeholder="name@example.com" />
+                                                        <IError class="mt-2" :message="form.errors.email"></IError>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12 mb-1 ml-1">
-                                                <div
-                                                    class="button-group d-flex pt-1 justify-content-md-start justify-content-center">
-                                                    <button
-                                                        class="btn btn-primary btn-default btn-squared mr-15 text-capitalize lh-normal px-50 py-15 signUp-createBtn signIn-createBtn">
-                                                        Create Account
-                                                    </button>
+                                                <div class="col-md-6 mb-1">
+                                                    <div class="form-group mb-15">
+                                                        <label for="password-field">password</label>
+                                                        <div class="position-relative">
+                                                            <input v-model="form.password" type="password"
+                                                                class="form-control" placeholder="*****" />
+                                                            <IError class="mt-2" :message="form.errors.password">
+                                                            </IError>
+                                                            <!-- <span
+                                                            class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
+                                                        </span> -->
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <!-- <p class="social-connector text-center mb-md-25 mb-15 mt-md-30 mt-20">
+                                                <div class="col-md-6 mb-1">
+                                                    <div class="form-group mb-15">
+                                                        <label for="password-field">confirm password</label>
+                                                        <div class="position-relative">
+                                                            <input v-model="form.password_confirmation" type="password"
+                                                                class="form-control" placeholder="*****" />
+                                                            <IError class="mt-2"
+                                                                :message="form.errors.password_confirmation">
+                                                            </IError>
+                                                            <!-- <span
+                                                            class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
+                                                        </span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-1 ml-1">
+                                                    <div class="signUp-condition">
+                                                        <div class="checkbox-theme-default custom-checkbox">
+                                                            <input class="checkbox" type="checkbox" id="check-1" />
+                                                            <label for="check-1">
+                                                                <span class="checkbox-text">Creating an account means
+                                                                    you’re
+                                                                    okay with our
+                                                                    <a href="#" class="color-secondary">Terms of
+                                                                        Service</a>
+                                                                    and
+                                                                    <a href="#" class="color-secondary">Privacy
+                                                                        Policy</a>
+                                                                    my preference</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-1 ml-1">
+                                                    <div
+                                                        class="button-group d-flex pt-1 justify-content-md-start justify-content-center">
+                                                        <button
+                                                            class="btn btn-primary btn-default btn-squared mr-15 text-capitalize lh-normal px-50 py-15 signUp-createBtn signIn-createBtn">
+                                                            Create Account
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- <p class="social-connector text-center mb-md-25 mb-15 mt-md-30 mt-20">
                                             <span>Or</span>
                                         </p>
                                         <div
@@ -109,8 +121,9 @@
                                                 </li>
                                             </ul>
                                         </div> -->
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +135,20 @@
 </template>
 
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import AuthLayout from "../../Layouts/Auth/AuthLayout.vue";
+import AuthLayout from "../../Layouts/Auth/AuthLayout.vue"
+import { Inertia } from '@inertiajs/inertia'
+import { useForm } from "@inertiajs/inertia-vue3"
+
+const form = useForm({ name: null, username: null, email: null, password: null, password_confirmation: null });
+
+const submit = () => {
+    form.post(route('register'), {
+        onBefore: () => window.toastr.info('Registering User'),
+        onError: () => window.toastr.error('Please remove errors.'),
+        onSuccess: function () {
+            window.toastr.success('User Created Successfully.')
+            Inertia.visit('/')
+        },
+    });
+}
 </script>

@@ -14,7 +14,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', fn() => Inertia::render('Welcome'))->middleware('auth');
+Route::get('/', fn() => Inertia::render('Welcome'));
 
 Route::get('/dashboard', function () {
     return view('dashboard');

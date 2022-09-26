@@ -1,10 +1,7 @@
 <template>
-
-    <!-- <Head title="Login"></Head> -->
-
     <AuthLayout>
         <template v-slot:body>
-            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-8">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8">
                 <div class="signUp-admin-right p-md-40 p-10">
                     <div
                         class="signUp-topbar d-flex align-items-center justify-content-md-end justify-content-center mt-md-0 mb-md-0 mt-20 mb-1">
@@ -14,7 +11,7 @@
                         </p>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-xl-7 col-lg-8 col-md-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="edit-profile mt-md-25 mt-0">
                                 <div class="card border-0">
                                     <div class="card-header border-0  pb-md-15 pb-10 pt-md-20 pt-10 ">
@@ -89,6 +86,5 @@
 </template>
 
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
 import AuthLayout from "../../Layouts/Auth/AuthLayout.vue";
 </script>
