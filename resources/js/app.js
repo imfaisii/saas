@@ -9,6 +9,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import InputError from '@/Components/InputError.vue';
 import StringHelpers from './Mixins/StringHelpers'
+import ButtonHelpers from './Mixins/ButtonHelpers';
 
 // toastr
 import toastr from 'toastr';
@@ -26,7 +27,7 @@ const inertiaApp = createInertiaApp({
 
         vApp.use(plugin)
         vApp.use(ZiggyVue)
-        vApp.mixin(...[StringHelpers])
+        vApp.mixin(...[StringHelpers, ButtonHelpers])
         vApp.component('Link', Link)
         vApp.component('Head', Head)
         vApp.component('IError', InputError)

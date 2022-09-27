@@ -3,10 +3,15 @@ defineProps(['message']);
 </script>
         
 <template>
-    <div v-show="message">
-        <p class="text-sm text-danger">
+    <div class="invalid-output" v-show="message">
+        <div class="text-sm text-danger">
             {{ message }}
-        </p>
+        </div>
     </div>
 </template>
-        
+
+<style>
+.invalid-output {
+    display: block !important;
+}
+</style>

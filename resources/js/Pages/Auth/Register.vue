@@ -29,16 +29,22 @@
                                                     <div class="form-group mb-20">
                                                         <label for="name">name</label>
                                                         <input v-model="form.name" type="text" class="form-control"
+                                                            v-bind:class="form.errors.name ? 'is-invalid' : ''"
                                                             placeholder="Full Name" />
-                                                        <IError class="mt-2" :message="form.errors.name"></IError>
+                                                        <IError class="invalid-feedback mt-2"
+                                                            :message="form.errors.name">
+                                                        </IError>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-1">
                                                     <div class="form-group mb-20">
                                                         <label for="email">Email Adress</label>
                                                         <input v-model="form.email" type="email" class="form-control"
+                                                            v-bind:class="form.errors.email ? 'is-invalid' : '' "
                                                             placeholder="name@example.com" />
-                                                        <IError class="mt-2" :message="form.errors.email"></IError>
+                                                        <IError class="invalid-feedback mt-2"
+                                                            :message="form.errors.email ">
+                                                        </IError>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-1">
@@ -46,8 +52,10 @@
                                                         <label for="password-field">password</label>
                                                         <div class="position-relative">
                                                             <input v-model="form.password" type="password"
+                                                                v-bind:class="form.errors.password ? 'is-invalid' : '' "
                                                                 class="form-control" placeholder="*****" />
-                                                            <IError class="mt-2" :message="form.errors.password">
+                                                            <IError class="invalid-feedback mt-2"
+                                                                :message="form.errors.password">
                                                             </IError>
                                                             <!-- <span
                                                             class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
@@ -57,11 +65,13 @@
                                                 </div>
                                                 <div class="col-md-6 mb-1">
                                                     <div class="form-group mb-15">
-                                                        <label for="password-field">confirm password</label>
+                                                        <label for="password-field">confirm
+                                                            password</label>
                                                         <div class="position-relative">
                                                             <input v-model="form.password_confirmation" type="password"
+                                                                v-bind:class="form.errors.password_confirmation ? 'is-invalid': ''"
                                                                 class="form-control" placeholder="*****" />
-                                                            <IError class="mt-2"
+                                                            <IError class="invalid-feedback mt-2"
                                                                 :message="form.errors.password_confirmation">
                                                             </IError>
                                                             <!-- <span
@@ -75,15 +85,19 @@
                                                         <div class="checkbox-theme-default custom-checkbox">
                                                             <input class="checkbox" type="checkbox" id="check-1" />
                                                             <label for="check-1">
-                                                                <span class="checkbox-text">Creating an account means
-                                                                    you’re
-                                                                    okay with our
-                                                                    <a href="#" class="color-secondary">Terms of
+                                                                <span class="checkbox-text">Creating an
+                                                                    account
+                                                                    means you’re
+                                                                    okay with
+                                                                    our
+                                                                    <a href="#" class="color-secondary">Terms
+                                                                        of
                                                                         Service</a>
                                                                     and
                                                                     <a href="#" class="color-secondary">Privacy
                                                                         Policy</a>
-                                                                    my preference</span>
+                                                                    my
+                                                                    preference</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -91,9 +105,12 @@
                                                 <div class="col-md-12 mb-1 ml-1">
                                                     <div
                                                         class="button-group d-flex pt-1 justify-content-md-start justify-content-center">
-                                                        <button
+                                                        <button type="submit" :disabled="btn.ajax"
                                                             class="btn btn-primary btn-default btn-squared mr-15 text-capitalize lh-normal px-50 py-15 signUp-createBtn signIn-createBtn">
-                                                            Create Account
+                                                            <div v-if="btn.ajax">
+                                                                <span class="spinner-border spinner-border-sm"></span>
+                                                            </div>
+                                                            {{ btn.text }}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -135,20 +152,37 @@
 </template>
 
 <script setup>
-import AuthLayout from "../../Layouts/Auth/AuthLayout.vue"
-import { Inertia } from '@inertiajs/inertia'
-import { useForm } from "@inertiajs/inertia-vue3"
+import AuthLayout from "../../Layouts/Auth/AuthLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
+import { reactive } from "vue";
 
-const form = useForm({ name: null, username: null, email: null, password: null, password_confirmation: null });
+var btn = reactive({ text: 'Create Account', ajax: false })
+
+const form = useForm({
+    name: null,
+    username: null,
+    email: null,
+    password: null,
+    password_confirmation: null,
+});
 
 const submit = () => {
-    form.post(route('register'), {
-        onBefore: () => window.toastr.info('Registering User'),
-        onError: () => window.toastr.error('Please remove errors.'),
-        onSuccess: function () {
-            window.toastr.success('User Created Successfully.')
-            Inertia.visit('/')
+    form.post(route("register"), {
+        onBefore: () => {
+            btn.ajax = true
+            btn.text = 'Please wait...'
+            window.toastr.info("Registering User")
         },
+        onError: () => window.toastr.error("Please remove errors."),
+        onSuccess: function () {
+            window.toastr.success("User Created Successfully.");
+            Inertia.visit("/");
+        },
+        onFinish: () => {
+            btn.ajax = false
+            btn.text = 'Create Account'
+        }
     });
-}
+};
 </script>

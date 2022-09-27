@@ -13,11 +13,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__ . '/auth.php';
+require __DIR__ . '/dashboard.php';
 
-Route::get('/', fn() => Inertia::render('Welcome'));
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+Route::get('/', fn () => Inertia::render('Welcome'));

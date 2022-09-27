@@ -5,6 +5,6 @@ export default {
         return { /* data */ }
     },
     methods: {
-        capitalizeFirstLetter(str) { return str.charAt(0).toUpperCase() + str.slice(1) }
+        capitalizeFirstLetter(str) { return str.charAt(0).toUpperCase() + str.slice(1) },
     },
 }
