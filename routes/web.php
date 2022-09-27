@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__ . '/auth.php';
+require __DIR__ . '/dashboard.php';
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => Inertia::render('Welcome'));

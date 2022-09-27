@@ -1,0 +1,1 @@
+<template>Welcome Component</template>
