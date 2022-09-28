@@ -13,7 +13,10 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dashboard.php';
 
-Route::get('/', fn () => Inertia::render('Welcome'));
+Route::group(['as' => 'landing.'], function () {
+    Route::view('/', 'pages.landing.home')->name('home');
+});
