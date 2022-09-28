@@ -13,6 +13,8 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Test
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dashboard.php';
 
