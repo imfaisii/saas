@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return route('auth.register');
+        return view('auth.register');
     }
 
     /**
@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'terms' => ['accepted'],
+            'terms' => ['accepted']
         ]);
 
         $user = User::create([

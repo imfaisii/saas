@@ -1,35 +1,12 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-    build: {
-        rollupOptions: {
-            output: {
-                chunkFileNames: 'assets/js/[name]-[hash].js',
-                entryFileNames: 'assets/js/[name]-[hash].js',
-
-                assetFileNames: ({ name }) => {
-                    if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
-                        return 'assets/images/[name]-[hash][extname]';
-                    }
-
-                    if (/\.css$/.test(name ?? '')) {
-                        return 'assets/css/[name]-[hash][extname]';
-                    }
-                    return 'assets/[name]-[hash][extname]';
-                },
-            },
-        }
-    },
     plugins: [
         laravel({
-            input: [
-                'resources/css/dashboard/guest.css',
-                'resources/css/dashboard/app.css',
-                'resources/css/landing/app.css',
-                'resources/js/app.js',
-            ],
+            input: "resources/js/app.js",
+            ssr: "resources/js/ssr.js",
             refresh: true,
         }),
         vue({
@@ -41,4 +18,12 @@ export default defineConfig({
             },
         }),
     ],
+    ssr: {
+        noExternal: ["vue", "@protonemedia/laravel-splade"]
+    },
+    resolve: {
+        alias: {
+            vue: "vue/dist/vue.esm-bundler"
+        }
+    },
 });

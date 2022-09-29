@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__ . '/auth.php';
-require __DIR__ . '/dashboard.php';
-
 Route::group(['as' => 'landing.'], function () {
     Route::view('/', 'pages.landing.home')->name('home');
+});
+
+Route::middleware('splade')->group(function () {
+    require __DIR__ . '/auth.php';
+    require __DIR__ . '/dashboard.php';
 });

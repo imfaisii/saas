@@ -3,3 +3,7 @@
 .toast-message {
     margin-top: 3px;
 }
+
+.checkbox-text a {
+    color: #ff69a5 !important;
+}

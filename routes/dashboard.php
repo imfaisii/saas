@@ -5,10 +5,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => ['auth', 'splade'],
     'domain' => env('APP_DASHBOARD_URL'),
     'as' => 'dashboard.'
 ], function () {
-
-    Route::get('/', fn () => 'Ok');
+    Route::get('/', fn () => redirect()->route('home'));
+    Route::get('/dashboard', fn () => view('dashboard'))->name('test');
 });
