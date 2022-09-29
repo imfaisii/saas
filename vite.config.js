@@ -24,7 +24,12 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/js/app.js', 'resources/css/landing/app.css'],
+            input: [
+                'resources/css/dashboard/guest.css',
+                'resources/css/dashboard/app.css',
+                'resources/css/landing/app.css',
+                'resources/js/app.js',
+            ],
             refresh: true,
         }),
         vue({

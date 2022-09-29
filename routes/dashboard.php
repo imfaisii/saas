@@ -4,10 +4,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'auth', 'domain' => env('APP_DASHBOARD_URL')], function () {
-    Route::get('/', fn () => 'This is dashboard');
-});
+Route::group([
+    'middleware' => 'auth',
+    'domain' => env('APP_DASHBOARD_URL'),
+    'as' => 'dashboard.'
+], function () {
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+    Route::get('/', fn () => 'Ok');
+});
