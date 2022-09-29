@@ -6,7 +6,6 @@
 </head>
 
 <body>
-    @inertia
     @include('partials.dashboard.scripts')
 </body>
 

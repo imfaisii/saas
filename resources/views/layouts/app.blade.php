@@ -7,9 +7,6 @@
 
 <body class="layout-light side-menu overlayScroll">
 
-    <!-- InertiaJS injected -->
-    @inertia
-
     <!-- Preloader -->
     <div id="overlayer">
         <span class="loader-overlay">

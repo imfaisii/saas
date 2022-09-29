@@ -3,7 +3,6 @@
 /* This is the file of dashboard routes */
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::group([
     'middleware' => 'auth',
@@ -11,6 +10,5 @@ Route::group([
     'as' => 'dashboard.'
 ], function () {
 
-    Route::get('/', fn () => Inertia::render('Dashboard/Home'));
-    Route::get('/dashboard', fn () => Inertia::render('Dashboard/Home'));
+    Route::get('/', fn () => 'Ok');
 });
