@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
     build: {
@@ -27,18 +26,9 @@ export default defineConfig({
             input: [
                 'resources/css/dashboard/guest.css',
                 'resources/css/dashboard/app.css',
-                'resources/css/landing/app.css',
-                'resources/js/app.js',
+                'resources/css/landing/app.css'
             ],
             refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
         }),
     ],
 });
