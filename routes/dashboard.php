@@ -3,11 +3,14 @@
 /* This is the file of dashboard routes */
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-Route::group(['middleware' => 'auth', 'domain' => env('APP_DASHBOARD_URL')], function () {
-    Route::get('/', fn () => 'This is dashboard');
+Route::group([
+    'middleware' => 'auth',
+    'domain' => env('APP_DASHBOARD_URL'),
+    'as' => 'dashboard.'
+], function () {
+
+    Route::get('/', fn () => Inertia::render('Dashboard/Home'));
+    Route::get('/dashboard', fn () => Inertia::render('Dashboard/Home'));
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');

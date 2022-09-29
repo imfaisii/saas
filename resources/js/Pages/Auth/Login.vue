@@ -1,15 +1,8 @@
 <template>
-    <AuthLayout>
+    <GuestLayout>
         <template v-slot:body>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-grid align-items-center">
                 <div class="signUp-admin-right p-md-40 p-10">
-                    <div
-                        class="signUp-topbar d-flex align-items-center justify-content-md-end justify-content-center mt-md-0 mb-md-0 mt-20 mb-1">
-                        <p class="mb-0">
-                            Don't have an account?
-                            <Link :href="route('register')">Sign Up</Link>
-                        </p>
-                    </div>
                     <div class="row justify-content-center">
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="edit-profile mt-md-25 mt-0">
@@ -19,40 +12,55 @@
                                             <h6>Sign In to <span class="color-primary">Admin</span></h6>
                                         </div>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="edit-profile__body">
-                                            <div class="form-group mb-20">
-                                                <label for="username">Username or Email Address</label>
-                                                <input type="text" class="form-control" id="username"
-                                                    placeholder="Username">
-                                            </div>
-                                            <div class="form-group mb-15">
-                                                <label for="password-field">password</label>
-                                                <div class="position-relative">
-                                                    <input id="password-field" type="password" class="form-control"
-                                                        name="password" value="secret">
-                                                    <div
+                                    <form @submit.prevent="submit">
+                                        <div class="card-body">
+                                            <div class="edit-profile__body">
+                                                <div class="form-group mb-20">
+                                                    <label for="username">Email Address</label>
+                                                    <input v-model="form.email" type="email" class="form-control"
+                                                        placeholder="Email Address">
+                                                    <IError class="invalid-feedback mt-2" :message="form.errors.email">
+                                                    </IError>
+                                                </div>
+                                                <div class="form-group mb-15">
+                                                    <label for="password-field">password</label>
+                                                    <div class="position-relative">
+                                                        <input v-model="form.password" type="password"
+                                                            class="form-control" placeholder="******">
+                                                        <IError class="invalid-feedback mt-2"
+                                                            :message="form.errors.password">
+                                                        </IError>
+                                                        <!-- <div
                                                         class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
+                                                    </div> -->
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="signUp-condition signIn-condition">
-                                                <div class="checkbox-theme-default custom-checkbox ">
-                                                    <input class="checkbox" type="checkbox" id="check-1">
-                                                    <label for="check-1">
-                                                        <span class="checkbox-text">Keep me logged in</span>
-                                                    </label>
+                                                <div class="signUp-condition signIn-condition">
+                                                    <div class="checkbox-theme-default custom-checkbox ">
+                                                        <input class="checkbox" type="checkbox" id="check-1">
+                                                        <label for="check-1">
+                                                            <span class="checkbox-text">Keep me logged in</span>
+                                                        </label>
+                                                    </div>
+                                                    <Link :href="route('password.request')">forget password</Link>
                                                 </div>
-                                                <a href="forget-password.html">forget password</a>
-                                            </div>
-                                            <div
-                                                class="button-group d-flex pt-1 justify-content-md-start justify-content-center">
-                                                <button
-                                                    class="btn btn-primary btn-default btn-squared mr-15 text-capitalize lh-normal px-50 py-15 signIn-createBtn ">
-                                                    sign in
-                                                </button>
-                                            </div>
-                                            <!-- <p class="social-connector text-center mb-sm-25 mb-15  mt-sm-30 mt-20">
+                                                <div class="button-group d-flex pt-1 justify-content-center">
+                                                    <button :disabled="btn.ajax"
+                                                        class="btn btn-primary btn-default btn-squared w-100 mr-15 text-capitalize lh-normal px-50 py-15 signIn-createBtn ">
+                                                        <div v-if="btn.ajax">
+                                                            <span class="spinner-border spinner-border-sm"></span>
+                                                        </div>
+                                                        {{ btn.text }}
+                                                    </button>
+                                                </div>
+                                                <div
+                                                    class="signUp-topbar d-flex align-items-center justify-content-center mt-20 mb-1">
+                                                    <p class="mb-0">
+                                                        Don't have an account?
+                                                        <Link :href="route('register')">Sign Up</Link>
+                                                    </p>
+                                                </div>
+                                                <!-- <p class="social-connector text-center mb-sm-25 mb-15  mt-sm-30 mt-20">
                                             <span>Or</span>
                                         </p>
                                         <div
@@ -73,8 +81,9 @@
                                                 </li>
                                             </ul>
                                         </div> -->
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -82,9 +91,34 @@
                 </div>
             </div>
         </template>
-    </AuthLayout>
+    </GuestLayout>
 </template>
 
 <script setup>
-import AuthLayout from "../../Layouts/Auth/AuthLayout.vue";
+import GuestLayout from "@/Layouts/Dashboard/GuestLayout.vue"
+import { reactive, inject } from "vue"
+import { Inertia } from "@inertiajs/inertia"
+import { useForm } from "@inertiajs/inertia-vue3"
+import useButtonHelper from "@/Mixins/ButtonHelpers"
+
+const { toastr } = inject('toastr')
+const { btnToggle } = useButtonHelper()
+
+var btn = reactive({ text: 'Sign In', ajax: false })
+
+const form = useForm({
+    email: "",
+    password: "",
+});
+
+const submit = () => {
+    form.post(route("login"), {
+        onBefore: () => btnToggle(btn, 'Please wait..'),
+        onSuccess: () => {
+            toastr.success("Please wait...");
+            Inertia.visit("/");
+        },
+        onFinish: () => btnToggle(btn, 'Sign In'),
+    })
+}
 </script>

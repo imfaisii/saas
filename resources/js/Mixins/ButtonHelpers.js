@@ -1,10 +1,9 @@
-/* js related to buttons */
+/* Button related global methods */
 
-export default {
-    data() {
-        return { /* data */ }
-    },
-    methods: {
-        toggleText(btn) { return btn.ajax = !btn.ajax }
-    },
+export default function useButtonHelper() {
+
+    // this makes the button disabled and adds the text
+    function btnToggle(btn, text = "Button") { btn.ajax = !btn.ajax; btn.text = text }
+
+    return { btnToggle }
 }
