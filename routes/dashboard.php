@@ -10,5 +10,6 @@ Route::group([
     'as' => 'dashboard.'
 ], function () {
 
-    Route::get('/', fn () => 'Ok');
+    Route::get('/', fn () => redirect()->route('dashboard.home'));
+    Route::get('/dashboard', fn () => 'Logged in')->name('home');
 });
