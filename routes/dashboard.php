@@ -13,4 +13,5 @@ Route::group([
 
     Route::get('/', fn () => Inertia::render('Dashboard/Home'));
     Route::get('/dashboard', fn () => Inertia::render('Dashboard/Home'));
+    Route::get('test', fn () => Inertia::render('Test'));
 });

@@ -21,16 +21,15 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, reactive, onActivated } from "vue";
 import { loadScript, unloadScript } from "vue-plugin-load-script";
 import NavBar from "@/Partials/Dashboard/NavBar.vue";
 import SideBar from "@/Partials/Dashboard/SideBar.vue";
 import Footer from "@/Partials/Dashboard/Footer.vue";
 
+var checkScriptLoad = reactive(true);
 
 onMounted(() => {
-    unloadScript('/js/dist/plugins.min.js')
-    unloadScript('/js/dist/main.min.js')
     loadScript("/js/dist/plugins.min.js").then(() => {
         loadScript("/js/dist/main.min.js").then(() => { $("#overlayer").addClass('d-none') })
     })
