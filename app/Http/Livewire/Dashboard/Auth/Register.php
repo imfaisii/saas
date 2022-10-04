@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Dashboard\Auth;
 
-use App\Traits\Loadable;
+use App\Models\User;
+use App\Traits\Toastify;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 
 class Register extends Component
 {
-    use Loadable;
+    use Toastify;
 
     public $user;
 
@@ -38,7 +41,15 @@ class Register extends Component
     {
         $this->validate();
 
-        dd("validated");
+        try {
+            $user = User::create($this->user);
+
+            Auth::login($user);
+        } catch (Exception $exception) {
+            self::sendException($exception);
+        } finally {
+            return redirect()->route('dashboard.home');
+        }
     }
 
     public function render()

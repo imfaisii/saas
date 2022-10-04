@@ -1,51 +1,69 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
+@section('content')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="min-vh-100 content-center w-50">
+                    <div class="maintenance-page">
+                        <div class="card">
+                            <div class="card-header">
+                                <img src="{{ asset('img/svg/logo_dark.svg') }}" alt="404" class="svg">
+                            </div>
+                            <div class="card-body">
+                                <!-- Session Status -->
+                                @if (session('status'))
+                                    <x-session-status
+                                        message="A new verification link has been sent to your email address." />
+                                @endif
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+                                <h4>Reset Password</h4>
+                                <p class="subtitle mt-2">
+                                    Please enter the new password your email address.
+                                </p>
+                                <form method="POST" action="{{ route('password.update') }}">
+                                    @csrf
+                                    <!-- Password Reset Token -->
+                                    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Email Address</label>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                                name="email" placeholder="johndoe@example.com"
+                                                value="{{ old('email', $request->email) }}" readonly required>
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div>
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                                        <div class="col-md-12">
+                                            <label>Password</label>
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
+                                                placeholder="******" required>
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
+                                        <div class="col-md-12">
+                                            <label>Confirm Password</label>
+                                            <input type="password"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                name="password_confirmation" placeholder="******" required>
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                        </div>
 
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary mt-2">
+                                                Reset Password
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <p>{{ date('Y') }} © {{ config('app.name') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-primary-button>
-                    {{ __('Reset Password') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+@endsection

@@ -2,33 +2,39 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('partials.dashboard.styles')
+    @include('partials.dashboard.auth-styles')
+    @include('partials.toastr')
     @livewireStyles
     @livewireScripts
     @stack('extended-css')
 </head>
 
 <body>
-    <main class=" main-content">
-        <div class="signUP-admin">
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6 col-lg-6 col-md-6 p-0">
-                        <div class="signUP-admin-left position-relative">
-                            <div class="signUP-overlay">
-                                <img class="svg signupTop" src="img/svg/signuptop.svg" alt="img" />
-                                <img class="svg signupBottom" src="img/svg/signupbottom.svg" alt="img" />
-                            </div>
-                            <div class="signUP-admin-left__img">
-                                <img class="img-fluid svg" src="img/svg/signupIllustration.svg" alt="img" />
+    <main class="main-content">
+        @if (in_array(Route::currentRouteName(), ['register', 'login']))
+            <div class="signUP-admin">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 p-0">
+                            <div class="signUP-admin-left position-relative h-100">
+                                <div class="signUP-overlay">
+                                    <img class="svg signupTop" src="img/svg/signuptop.svg" alt="img" />
+                                    <img class="svg signupBottom" src="img/svg/signupbottom.svg" alt="img" />
+                                </div>
+                                <div class="signUP-admin-left__img">
+                                    <img class="img-fluid svg" src="img/svg/signupIllustration.svg" alt="img" />
+                                </div>
                             </div>
                         </div>
+                        @yield('content')
                     </div>
-                    @yield('content')
                 </div>
             </div>
-        </div>
+        @else
+            @yield('content')
+        @endif
     </main>
+
     <div id="overlayer">
         <span class="loader-overlay">
             <div class="atbd-spin-dots spin-lg">
@@ -40,7 +46,7 @@
         </span>
     </div>
 
-    @include('partials.dashboard.scripts')
+    @include('partials.dashboard.auth-scripts')
     @stack('extended-js')
 </body>
 
