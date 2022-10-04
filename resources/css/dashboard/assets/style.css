@@ -6038,7 +6038,7 @@ ul {
 }
 
 .card {
-  box-shadow: 0 5px 20px rgba(146, 153, 184, 0.03);
+  box-shadow: 0 5px 20px rgba(146, 153, 184, 30%);
 }
 .card .card-header {
   display: flex;
@@ -9418,6 +9418,12 @@ table.table-basic tr td.card .card-body,
   justify-content: center;
 }
 .signUp-socialBtn li button {
+  box-shadow: 0px 5px 15px rgba(146, 153, 184, 0.1019607843);
+  border: 1px solid #f1f2f6;
+  background: #f8f9fb;
+  white-space: nowrap;
+}
+.signUp-socialBtn li a {
   box-shadow: 0px 5px 15px rgba(146, 153, 184, 0.1019607843);
   border: 1px solid #f1f2f6;
   background: #f8f9fb;
@@ -17542,12 +17548,21 @@ table.table-rounded tbody tr td:last-child {
   }
 }
 .coming-soon .subtitle {
-  font-size: 17px;
+  font-size: 15px !important;
   line-height: 1.6470588235;
   font-weight: 400;
   color: #5A5F7D;
   max-width: 580px;
-  margin: 30px auto 53px;
+  margin: 20px auto 33px;
+}
+.coming-soon .note-red{
+  font-size: 12px !important;
+  line-height: 1.6470588235;
+  font-weight: 400;
+  color: red;
+  max-width: 580px;
+  margin: 20px auto 33px;
+
 }
 @media (max-width: 1200px) {
   .coming-soon .subtitle {
@@ -17565,7 +17580,7 @@ table.table-rounded tbody tr td:last-child {
   }
 }
 .coming-soon__body {
-  margin-top: 168px;
+  margin-top: 70px;
   margin-bottom: 163px;
   padding: 0 30px;
 }

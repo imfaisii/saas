@@ -13,6 +13,6 @@
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </div>
         <div wire:loading wire:target="{{ $functionName }}">{{ $loading }}</div>
-        <div wire:loading.remove>{{ $text }}</div>
+        <div wire:loading.remove wire:target="{{ $functionName }}">{{ $text }}</div>
     </span>
 </button>

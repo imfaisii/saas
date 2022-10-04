@@ -1,5 +1,5 @@
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-grid align-items-center">
-    <div class="signUp-admin-right p-md-40 p-10">
+    <div class="signUp-admin-right p-md-40 p-10" style="padding-top: 1px !important;">
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="edit-profile mt-md-25 mt-0">
@@ -82,6 +82,32 @@
                                                 Already have an account?
                                                 <a href="{{ route('login') }}">Sign In</a>
                                             </p>
+                                        </div>
+                                        <p class="social-connector text-center mb-sm-25 mb-15  mt-sm-30 mt-20">
+                                            <span>Or</span>
+                                        </p>
+                                        <div class="button-group d-flex align-items-center justify-content-center">
+                                            <ul class="signUp-socialBtn">
+                                                <li>
+                                                    <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
+                                                        class=" radius-md wh-48 content-center">
+                                                        <img class="svg" src="{{ asset('img/svg/google.svg') }}"
+                                                            alt="img" /></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('socialite.redirect', ['to' => 'facebook']) }}"
+                                                        class=" radius-md wh-48 content-center">
+                                                        <img class="svg" src="{{ asset('img/svg/facebook.svg') }}"
+                                                            alt="img" /></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('socialite.redirect', ['to' => 'github']) }}"
+                                                        class="radius-md wh-48 content-center">
+                                                        <img class="svg" src="{{ asset('img/svg/github.svg') }}"
+                                                            alt="img" />
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
