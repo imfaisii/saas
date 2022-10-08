@@ -29,22 +29,23 @@
                     <ul class="wsmenu-list nav-skyblue-hover">
 
                         <!-- DROPDOWN MENU -->
-                        <li aria-haspopup="true"><a href="#">Dropdown <span class="wsarrow"></span></a>
+                        <li aria-haspopup="true"><a href="#">APIs <span class="wsarrow"></span></a>
                             <ul class="sub-menu">
-                                <li aria-haspopup="true"><a href="#content-3">DDI 1</a></li>
-                                <li aria-haspopup="true"><a href="#features-8">DDI 2</a></li>
+                                <li aria-haspopup="true"><a href="#content-3">Currency</a></li>
+                                <li aria-haspopup="true"><a href="#features-8">Fuel</a></li>
+                                <li aria-haspopup="true"><a href="#features-8">Gold</a></li>
                             </ul>
                         </li>
 
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Link</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Link</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Link</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Link</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Convert Now</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">About Us</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Plans</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Blogs</a></li>
 
                         <!-- HEADER BUTTON -->
                         <li class="nl-simple" aria-haspopup="true">
                             <a href="#cta-11" class="btn btn-tra-grey skyblue-hover last-link">
-                                Get Started
+                                <span><i class="fa-solid fa-lock"></i></span>Login
                             </a>
                         </li>
 

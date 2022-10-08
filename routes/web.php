@@ -20,4 +20,5 @@ require __DIR__ . '/dashboard.php';
 
 Route::group(['as' => 'landing.'], function () {
     Route::view('/', 'pages.landing.home')->name('home');
+    Route::view('/convert-now', 'pages.landing.convert-now')->name('convert-now');
 });
