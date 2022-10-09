@@ -8,7 +8,6 @@ class ProfileController
 {
     public function index()
     {
-        //
         return view('pages.dashboard.profile.index');
     }
 
