@@ -94,7 +94,7 @@
             <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
                 <div class="col">
                     <div class="footer-copyright">
-                        <p>&copy; 2010 - 2021 OLMO. All Rights Reserved</p>
+                        <p>&copy; 2022 - {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved</p>
                     </div>
                 </div>
                 <div class="col">

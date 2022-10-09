@@ -6,7 +6,8 @@
     content="Responsive, HTML5, DSAThemes, One Page, Landing, Software, Mobile App, SaaS, Startup, Creative, Freelancers, Digital Product">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- SITE TITLE -->
-<title>{{ env('APP_NAME') . ucwords(last(request()->segments())) }}</title>
+<title> {{ config('app.name') }} - {{ $title ?? (request()->segments() ? ucwords(last(request()->segments())) : 'Home') }}
+</title>
 <!-- FAVICON AND TOUCH ICONS -->
 <link rel="shortcut icon" href="{{ asset('landing/images/favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ asset('landing/images/favicon.ico') }}" type="image/x-icon">
