@@ -2,9 +2,10 @@
 
 /* This is the file of dashboard routes */
 
-use App\Http\Controllers\Auth\SocialiteController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\Dashboard\ProfileController;
 
 Route::group([
     'middleware' => ['auth', 'verified'],
@@ -12,6 +13,9 @@ Route::group([
 ], function () {
     Route::get('/', fn () => redirect()->route('dashboard.home'));
     Route::get('/dashboard', fn () => view('pages.dashboard.home.index'))->name('home');
+
+    // User Profile
+    Route::resource('/profile', ProfileController::class);
 });
 
 // SocialiteController
