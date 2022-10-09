@@ -1,35 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.min.css') }}">
-    @routes
-    @vite(['resources/js/app.js'])
-    @inertiaHead
+    @include('partials.dashboard.auth-styles')
+    @include('partials.toastr')
+    @livewireStyles
+    @livewireScripts
+    @stack('extended-css')
 </head>
 
 <body>
-    @inertia
-    <script src="{{ asset('js/jquery/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/popper.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('js/daterangepicker.js') }}"></script>
-    <script src="{{ asset('js/trumbowyg.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.peity.min.js') }}"></script>
-    <script src="{{ asset('js/slick.min.js') }}"></script>
-    <script src="{{ asset('js/wickedpicker.min.js') }}"></script>
-    <script src="{{ asset('js/feather.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.star-rating-svg.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <main class="main-content">
+        @if (in_array(Route::currentRouteName(), ['register', 'login']))
+            <div class="signUP-admin">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 p-0">
+                            <div class="signUP-admin-left position-relative h-100">
+                                <div class="signUP-overlay">
+                                    <img class="svg signupTop" src="img/svg/signuptop.svg" alt="img" />
+                                    <img class="svg signupBottom" src="img/svg/signupbottom.svg" alt="img" />
+                                </div>
+                                <div class="signUP-admin-left__img">
+                                    <img class="img-fluid svg" src="img/svg/signupIllustration.svg" alt="img" />
+                                </div>
+                            </div>
+                        </div>
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        @else
+            @yield('content')
+        @endif
+    </main>
+
+    <div id="overlayer">
+        <span class="loader-overlay">
+            <div class="atbd-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </span>
+    </div>
+
+    @include('partials.dashboard.auth-scripts')
+    @stack('extended-js')
 </body>
 
 </html>

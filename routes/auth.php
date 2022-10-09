@@ -8,14 +8,16 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Livewire\Dashboard\Auth\Login as LivewireLogin;
+use App\Http\Livewire\Dashboard\Auth\Register as LivewireRegister;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::inertia('register', 'Auth/Register')->name('register');
+    Route::get('register', LivewireRegister::class)->name('register');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::inertia('login', 'Auth/Login')->name('login');
+    Route::get('login', LivewireLogin::class)->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
