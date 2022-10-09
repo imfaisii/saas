@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    @include('partials.dashboard.styles', ['title' => $title ?? null])
+    @include('partials.toastr')
+    @livewireStyles
+    @livewireScripts
+    @stack('extended-css')
+</head>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+<body class="layout-light side-menu overlayScroll">
+    <div class="mobile-search">
+        <form class="search-form">
+            <span data-feather="search"></span>
+            <input class="form-control mr-sm-2 box-shadow-none" type="text" placeholder="Search...">
+        </form>
+    </div>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <div class="mobile-author-actions"></div>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @include('partials.dashboard.header')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+    <main class="main-content">
+        @include('partials.dashboard.sidebar')
+
+        <div class="contents">
+
+            @yield('content')
         </div>
-    </body>
+
+        @include('partials.dashboard.footer')
+    </main>
+
+    <!-- Change to false to hide preloader -->
+    @if (true)
+        <div id="overlayer">
+            <span class="loader-overlay">
+                <div class="atbd-spin-dots spin-lg">
+                    <span class="spin-dot badge-dot dot-primary"></span>
+                    <span class="spin-dot badge-dot dot-primary"></span>
+                    <span class="spin-dot badge-dot dot-primary"></span>
+                    <span class="spin-dot badge-dot dot-primary"></span>
+                </div>
+            </span>
+        </div>
+    @endif
+
+    <div class="overlay-dark-sidebar"></div>
+
+    @include('partials.dashboard.scripts')
+    @stack('extended-js')
+</body>
+
 </html>
