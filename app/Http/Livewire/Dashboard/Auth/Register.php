@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Register extends Component
 {
@@ -42,7 +43,7 @@ class Register extends Component
         $this->validate();
 
         try {
-            $user = User::create($this->user);
+            $user = User::create($this->user)->assignRole(Role::whereName('user')->first());
 
             Auth::login($user);
         } catch (Exception $exception) {

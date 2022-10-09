@@ -1,4 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    @livewire('dashboard.home.client')
+    @role('user')
+        @livewire('dashboard.home.user')
+        @elserole('super-admin')
+        @livewire('dashboard.home.admin')
+    @endrole
 @endsection
