@@ -13,7 +13,7 @@
 
                 <!-- HEADER LOGO -->
                 <div class="desktoplogo">
-                    <a href="#hero-5" class="logo-black">
+                    <a href="{{ route('landing.home') }}" class="logo-black">
                         <img src="{{ asset('landing/images/logo-01.png') }}" alt="header-logo">
                     </a>
                 </div>
@@ -22,7 +22,6 @@
                         <img src="{{ asset('landing/images/logo-white.png') }}" alt="header-logo">
                     </a>
                 </div>
-
 
                 <!-- MAIN MENU -->
                 <nav class="wsmenu clearfix">
@@ -37,16 +36,29 @@
                             </ul>
                         </li> --}}
 
-                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.apis') }}">APIs</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.convert-now') }}">Convert Now</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.about-us') }}">About Us</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.pricing-plans') }}">Pricing</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.blogs') }}">Blogs</a></li>
+                        <li class="nl-simple" aria-haspopup="true">
+                            <a href="{{ route('landing.apis') }}">APIs</a>
+                        </li>
+                        <li class="nl-simple" aria-haspopup="true">
+                            <a href="{{ route('landing.convert-now') }}">
+                                Convert Now
+                            </a>
+                        </li>
+                        <li class="nl-simple" aria-haspopup="true">
+                            <a href="{{ route('landing.about-us') }}">
+                                About Us</a>
+                        </li>
+                        <li class="nl-simple" aria-haspopup="true">
+                            <a href="{{ route('landing.pricing-plans') }}">Pricing</a>
+                        </li>
+                        <li class="nl-simple" aria-haspopup="true">
+                            <a href="{{ route('landing.blogs') }}">Blogs</a>
+                        </li>
 
                         <!-- HEADER BUTTON -->
                         <li class="nl-simple" aria-haspopup="true">
                             <a href="#cta-11" class="btn btn-tra-grey skyblue-hover last-link">
-                                <span><i class="fa-solid fa-lock"></i></span>Login
+                                <span><i class="fa-solid fa-play"></i></span>Get Started
                             </a>
                         </li>
 
