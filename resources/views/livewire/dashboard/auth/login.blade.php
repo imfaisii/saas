@@ -10,7 +10,7 @@
                             </div>
                         </div>
                         @if (session('status'))
-                            <x-session-status />
+                            <x-session-status style="margin-right:25px;margin-left:25px;" />
                         @endif
 
                         @error('credentials')

@@ -57,7 +57,7 @@
 
                         <!-- HEADER BUTTON -->
                         <li class="nl-simple" aria-haspopup="true">
-                            <a href="#cta-11" class="btn btn-tra-grey skyblue-hover last-link">
+                            <a href="{{ route('login') }}" class="btn btn-tra-grey skyblue-hover last-link">
                                 <span><i class="fa-solid fa-play"></i></span>Get Started
                             </a>
                         </li>

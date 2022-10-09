@@ -7,7 +7,7 @@
                     <div class="maintenance-page">
                         <div class="card">
                             <div class="card-header">
-                                <img src="img/svg/logo_dark.svg" alt="404" class="svg">
+                                <img src="{{ asset('img/svg/logo_dark.svg') }}" alt="404" class="svg">
                             </div>
                             <div class="card-body">
                                 <!-- Session Status -->
@@ -15,7 +15,7 @@
                                     <x-session-status
                                         message="A new verification link has been sent to your email address." />
                                 @endif
-                                
+
                                 <h4>Hello {{ auth()->user()->name }} !</h4>
                                 <p class="subtitle mt-2">
                                     Thanks for signing up! Before getting started, could you verify your email address by
@@ -25,9 +25,13 @@
                                 <p class="subtitle">Thank You.</p>
                             </div>
                             <div class="card-footer d-flex align-items-baseline justify-content-between">
-                                <form method="POST" action="{{ route('verification.send') }}">
+                                <form ref="resendLinkForm" @submit.prevent="sendLink" method="POST"
+                                    action="{{ route('verification.send') }}">
                                     @csrf
-                                    <button type="submit" class="btn btn-primary">Resend Verification Link </button>
+                                    <button type="submit" class="btn btn-primary" :disabled="loading">
+                                        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                                        @{{ btnText }}
+                                    </button>
                                 </form>
                                 {{-- <p>{{ date('Y') }} © {{ config('app.name') }}</p> --}}
                                 <form method="POST" action="{{ route('logout') }}">
@@ -46,3 +50,26 @@
         </div>
     </div>
 @endsection
+
+@push('extended-js')
+    <script>
+        $(function() {
+            new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        loading: false,
+                        btnText: 'Verify Email Address'
+                    }
+                },
+                methods: {
+                    sendLink() {
+                        this.btnText = 'Please wait...'
+                        this.loading = true
+                        this.$refs.resendLinkForm.submit();
+                    }
+                },
+            });
+        });
+    </script>
+@endpush
