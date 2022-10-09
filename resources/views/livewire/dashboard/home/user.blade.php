@@ -299,6 +299,7 @@
                 </div>
             </div>
             <div class="col-xl-5 col-md-6 mb-30">
+
                 <div class="card broder-0 cashflowChart2">
                     <div class="card-header">
                         <h6>
@@ -405,6 +406,7 @@
                                     </div>
                                     <!-- ends: .cashflow-display__single -->
                                 </div>
+
                                 <div class="cashflow-chart">
                                     <div class="parentContainer">
                                         <div>
