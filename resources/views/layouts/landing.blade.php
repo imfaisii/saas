@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('partials.landing.styles')
+    @include('partials.landing.styles', ['title' => $title ?? null])
 </head>
 
 <body>
