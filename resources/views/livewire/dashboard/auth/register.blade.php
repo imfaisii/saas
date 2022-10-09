@@ -1,5 +1,5 @@
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-grid align-items-center">
-    <div class="signUp-admin-right p-md-40 p-10" style="padding-top: 1px !important;">
+    <div class="signUp-admin-right p-md-40 p-10" style="padding-top: 20px !important;">
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12 col-md-12">
                 <div class="edit-profile mt-md-25 mt-0">

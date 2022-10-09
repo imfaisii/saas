@@ -20,7 +20,7 @@
                                 <p class="subtitle mt-2">
                                     Please enter the new password your email address.
                                 </p>
-                                <form method="POST" action="{{ route('password.update') }}">
+                                <form  ref="updatePasswordForm" @submit.prevent="updatePassword" method="POST" action="{{ route('password.update') }}">
                                     @csrf
                                     <!-- Password Reset Token -->
                                     <input type="hidden" name="token" value="{{ $request->route('token') }}">
@@ -50,8 +50,9 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary mt-2">
-                                                Reset Password
+                                            <button type="submit" class="btn btn-primary mt-2" :disabled="loading">
+                                                <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                                                @{{ btnText }}
                                             </button>
                                         </div>
                                     </div>
@@ -67,3 +68,26 @@
         </div>
     </div>
 @endsection
+
+@push('extended-js')
+    <script>
+        $(function() {
+            new Vue({
+                el: "#root",
+                data() {
+                    return {
+                        loading: false,
+                        btnText: 'Reset Password'
+                    }
+                },
+                methods: {
+                    updatePassword() {
+                        this.btnText = 'Please wait...'
+                        this.loading = true
+                        this.$refs.updatePasswordForm.submit();
+                    }
+                },
+            });
+        });
+    </script>
+@endpush

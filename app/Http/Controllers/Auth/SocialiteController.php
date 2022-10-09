@@ -19,7 +19,7 @@ class SocialiteController extends Controller
         return Socialite::driver(session('socialite_driver'))->redirect();
     }
 
-    public function callback(): void
+    public function callback(): RedirectResponse
     {
         $driver = session('socialite_driver');
 
@@ -29,7 +29,7 @@ class SocialiteController extends Controller
 
         $user->socialite()->updateOrCreate(['driver_id' => $data->id, 'email' => $data->email], self::getSubModel($data, $driver));
 
-        self::loginUser($user);
+        return self::loginUser($user);
     }
 
     public function loginUser($user): RedirectResponse
