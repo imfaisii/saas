@@ -2,13 +2,10 @@
 
 namespace [namespace];
 
-use App\Traits\Loadable;
 use Livewire\Component;
 
 class [class] extends Component
 {
-    use Loadable;
-    
     public function render()
     {
         return view('[view]');

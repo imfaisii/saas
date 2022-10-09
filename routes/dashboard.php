@@ -11,7 +11,7 @@ Route::group([
     'as' => 'dashboard.'
 ], function () {
     Route::get('/', fn () => redirect()->route('dashboard.home'));
-    Route::get('/dashboard', fn () => 'Logged in')->name('home');
+    Route::get('/dashboard', fn () => view('pages.dashboard.home.index'))->name('home');
 });
 
 // SocialiteController

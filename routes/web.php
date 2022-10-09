@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['domain' => env('APP_DASHBOARD_DOMAIN')], function () {
+Route::group(['domain' => config('dashboard.redirect_links.main_url')], function () {
     require __DIR__ . '/auth.php';
     require __DIR__ . '/dashboard.php';
 });
@@ -23,7 +23,7 @@ Route::group(['as' => 'landing.'], function () {
     Route::view('/', 'pages.landing.home')->name('home');
     Route::view('/privacy-policy', 'pages.landing.home')->name('policy');
     Route::view('/terms-and-conditions', 'pages.landing.home')->name('terms-and-conditions');
-    
+
     Route::view('/convert-now', 'pages.landing.convert-now')->name('convert-now');
 
     Route::view('/blogs', 'pages.landing.blogs.index')->name('blogs');
@@ -37,5 +37,4 @@ Route::group(['as' => 'landing.'], function () {
     Route::prefix('apis')->name('apis.')->group(function () {
         Route::view('api-dynamic-name', 'pages.landing.apis.api-detail')->name('api-detail');
     });
-
 });
