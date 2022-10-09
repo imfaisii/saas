@@ -1,4 +1,4 @@
-## About Laravel
+## Get ENV file
 
 .env decrypt key
 - base64:JoH+14Wd4gL087twBgRnCx/2i73vDDEERf6V7NoMPQM=
