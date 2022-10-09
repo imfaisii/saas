@@ -821,4 +821,3 @@
         <!-- ends: .navbar-right -->
     </nav>
 </header>
-</header>
