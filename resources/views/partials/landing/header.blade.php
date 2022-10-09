@@ -29,18 +29,19 @@
                     <ul class="wsmenu-list nav-skyblue-hover">
 
                         <!-- DROPDOWN MENU -->
-                        <li aria-haspopup="true"><a href="#">APIs <span class="wsarrow"></span></a>
+                        {{-- <li aria-haspopup="true"><a href="#">APIs <span class="wsarrow"></span></a>
                             <ul class="sub-menu">
                                 <li aria-haspopup="true"><a href="#content-3">Currency</a></li>
                                 <li aria-haspopup="true"><a href="#features-8">Fuel</a></li>
                                 <li aria-haspopup="true"><a href="#features-8">Gold</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
 
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Convert Now</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">About Us</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Plans</a></li>
-                        <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">Blogs</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.apis') }}">APIs</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.convert-now') }}">Convert Now</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.about-us') }}">About Us</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.pricing-plans') }}">Pricing</a></li>
+                        <li class="nl-simple" aria-haspopup="true"><a href="{{ route('landing.blogs') }}">Blogs</a></li>
 
                         <!-- HEADER BUTTON -->
                         <li class="nl-simple" aria-haspopup="true">
@@ -56,7 +57,7 @@
                             <span><a href="#" class="ico-instagram"><span class="flaticon-instagram"></span></a></span>
                             <span><a href="#" class="ico-dribbble"><span class="flaticon-dribbble"></span></a></span>
                         </li> --}}
-                        
+
                     </ul>
                 </nav>
             </div>
