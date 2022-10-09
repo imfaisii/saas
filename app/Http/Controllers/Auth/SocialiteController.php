@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Spatie\Permission\Models\Role;
 
 class SocialiteController extends Controller
 {
@@ -21,15 +23,19 @@ class SocialiteController extends Controller
 
     public function callback(): RedirectResponse
     {
-        $driver = session('socialite_driver');
+        try {
+            $driver = session('socialite_driver');
 
-        $data = Socialite::driver($driver)->user();
+            $data = Socialite::driver($driver)->user();
 
-        $user = User::updateOrCreate(['email' => $data->email], self::getUserModel($data));
+            $user = User::updateOrCreate(['email' => $data->email], self::getUserModel($data))->assignRole(Role::whereName('user')->first());
 
-        $user->socialite()->updateOrCreate(['driver_id' => $data->id, 'email' => $data->email], self::getSubModel($data, $driver));
-
-        return self::loginUser($user);
+            $user->socialite()->updateOrCreate(['driver_id' => $data->id, 'email' => $data->email], self::getSubModel($data, $driver));
+        } catch (Exception $exception) {
+            return response()->json($exception->getMessage());
+        } finally {
+            return self::loginUser($user);
+        }
     }
 
     public function loginUser($user): RedirectResponse
@@ -41,7 +47,6 @@ class SocialiteController extends Controller
 
     public function getUserModel(object $data): array
     {
-
         return [
             'name' => $data->name,
             'email' => $data->email,

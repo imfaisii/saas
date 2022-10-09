@@ -40,7 +40,7 @@ class Login extends Component
 
         if (Hash::check($this->user['password'], $db->password)) {
             Auth::loginUsingId($db->id);
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.home');
         }
 
         $this->addError('credentials', "Invalid credentials , please try again.");
