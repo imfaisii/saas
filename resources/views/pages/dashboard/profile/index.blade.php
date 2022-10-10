@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('extended-css')
+    @include('partials.select2')
+@endpush
 @section('content')
-    <h2>Profile</h2>
+    <livewire:dashboard.profile.main-component />
 @endsection

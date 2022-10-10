@@ -768,23 +768,24 @@
                 <!-- ends: .nav-flag-select -->
                 <li class="nav-author">
                     <div class="dropdown-custom">
-                        <a href="javascript:;" class="nav-item-toggle"><img src="{{ asset('img/author-nav.jpg') }}"
+                        <a href="javascript:;" class="nav-item-toggle">
+                            <img src="https://ui-avatars.com/api/?background=random&name={{ auth()->user()->name }}"
                                 alt="" class="rounded-circle"></a>
                         <div class="dropdown-wrapper">
                             <div class="nav-author__info">
                                 <div class="author-img">
-                                    <img src="{{ asset('img/author-nav.jpg') }}" alt=""
-                                        class="rounded-circle">
+                                    <img src="https://ui-avatars.com/api/?background=random&name={{ auth()->user()->name }}"
+                                        alt="" class="rounded-circle">
                                 </div>
                                 <div>
-                                    <h6>Abdullah Bin Talha</h6>
-                                    <span>UI Designer</span>
+                                    <h6>{{ auth()->user()->name }}</h6>
+                                    <span>{{ ucwords(auth()->user()->roles->first()->name) }}</span>
                                 </div>
                             </div>
                             <div class="nav-author__options">
                                 <ul>
                                     <li>
-                                        <a href="">
+                                        <a href="{{ route('dashboard.profile.index') }}">
                                             <span data-feather="user"></span> Profile</a>
                                     </li>
                                     <li>
