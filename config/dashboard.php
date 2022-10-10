@@ -4,6 +4,6 @@
 
 return [
     'redirect_links' => [
-        'main_url' => env('APP_DASHBOARD_URL', 'http://app.saas.test')
+        'main_url' => env('APP_DASHBOARD_DOMAIN', 'http://app.saas.test')
     ],
 ];
