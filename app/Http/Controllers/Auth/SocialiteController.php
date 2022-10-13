@@ -21,7 +21,7 @@ class SocialiteController extends Controller
         return Socialite::driver(session('socialite_driver'))->redirect();
     }
 
-    public function callback(): RedirectResponse
+    public function callback()
     {
         try {
             $driver = session('socialite_driver');
@@ -31,10 +31,10 @@ class SocialiteController extends Controller
             $user = User::updateOrCreate(['email' => $data->email], self::getUserModel($data))->assignRole(Role::whereName('user')->first());
 
             $user->socialite()->updateOrCreate(['driver_id' => $data->id, 'email' => $data->email], self::getSubModel($data, $driver));
+
+            return self::loginUser($user);
         } catch (Exception $exception) {
             return response()->json($exception->getMessage());
-        } finally {
-            return self::loginUser($user);
         }
     }
 

@@ -38,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function user_details()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
     public function socialite()
     {
         return $this->hasOne(Socialite::class, 'user_id', 'id');

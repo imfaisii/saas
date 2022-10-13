@@ -1,5 +1,11 @@
 // livewire events
 
+$(function () {
+    Livewire.on('select2', () => {
+        // logic
+    })
+});
+
 window.addEventListener('toast', event => {
     makeToastr(event.detail.type, event.detail.message)
 })

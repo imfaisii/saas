@@ -25,8 +25,15 @@
         @include('partials.dashboard.sidebar')
 
         <div class="contents">
-
-            @yield('content')
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @include('partials.dashboard.footer')
