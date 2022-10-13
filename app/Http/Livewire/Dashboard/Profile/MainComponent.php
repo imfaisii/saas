@@ -21,17 +21,17 @@ class MainComponent extends Component
             'user.name' => ['required', 'string', 'max:255'],
             'user.email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
             'user.password' => ['required', 'confirmed', Password::defaults()],
-            'user.details.phone' => ['nullable', 'string'],
-            'user.details.country' => ['nullable', 'string'],
-            'user.details.city' => ['nullable', 'required_if:country,1'],
-            'user.details.company' => ['nullable', 'string'],
-            'user.details.facebook_url' => ['nullable', 'url', 'regex:(facebook.com)'],
-            'user.details.twitter_url' => ['nullable', 'url', 'regex:(twitter.com)'],
-            'user.details.instagram_url' => ['nullable', 'url', 'regex:(instagram.com)'],
+            'user.user_details.phone' => ['nullable', 'string'],
+            'user.user_details.country' => ['nullable', 'string'],
+            'user.user_details.city' => ['nullable', 'required_if:country,1'],
+            'user.user_details.company' => ['nullable', 'string'],
+            'user.user_details.facebook_url' => ['nullable', 'url', 'regex:(facebook.com)'],
+            'user.user_details.twitter_url' => ['nullable', 'url', 'regex:(twitter.com)'],
+            'user.user_details.instagram_url' => ['nullable', 'url', 'regex:(instagram.com)'],
         ];
     }
 
-    public function mount()
+    public function __construct()
     {
         $this->user = auth()->user();
     }
@@ -39,7 +39,6 @@ class MainComponent extends Component
     public function updateProfile()
     {
         $this->validate();
-        dd($this->user);
     }
 
     public function render()
