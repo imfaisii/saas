@@ -8,7 +8,7 @@
         </div>
 
         @if (session('status'))
-            <x-session-status :dismissable="true" />
+            <x-app.session-status type="success" :dismissable="true" />
         @endif
 
         @error('credentials')
@@ -33,7 +33,7 @@
         <div class="text-center">
             <x-form.submit-button type="primary" class="w-50" functionName="loginUser" btnText="Sign In" />
 
-            <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
+            <div class="text-center text-muted text-uppercase fw-bolder mb-5 mt-5">or</div>
 
             <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
                 class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">

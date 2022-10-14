@@ -20,10 +20,11 @@
             @if (session('status'))
                 <x-app.session-status />
             @endif
-            
+
             <div class="fv-row mb-10">
                 <label class="form-label fw-bolder text-gray-900 fs-6">Email</label>
                 <input v-validate="'required|email'"
+                    :class="{ 'is-invalid': errors.has('email') }"
                     class="form-control form-control-solid @error('email') is-invalid @enderror" type="email"
                     placeholder="johndoe@example.com" name="email" autocomplete="off" />
                 <span class="fv-plugins-message-container invalid-feedback d-none">@{{ errors.first('email') }}</span>
