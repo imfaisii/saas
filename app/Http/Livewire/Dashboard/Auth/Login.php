@@ -45,6 +45,7 @@ class Login extends Component
 
         $this->addError('credentials', "Invalid credentials , please try again.");
     }
+    
     public function render()
     {
         return view('livewire.dashboard.auth.login')

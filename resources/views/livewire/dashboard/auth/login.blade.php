@@ -1,93 +1,55 @@
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-grid align-items-center">
-    <div class="signUp-admin-right p-md-40 p-10" style="padding-top: 20px !important;">
-        <div class="row justify-content-center">
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="edit-profile mt-md-25 mt-0">
-                    <div class="card border-0">
-                        <div class="card-header border-0  pb-md-15 pb-10 pt-md-20 pt-10 ">
-                            <div class="edit-profile__title">
-                                <h6>Sign In to <span class="color-primary">Admin</span></h6>
-                            </div>
-                        </div>
-                        @if (session('status'))
-                            <x-session-status style="margin-right:25px;margin-left:25px;" />
-                        @endif
-
-                        @error('credentials')
-                            <div class="col-12 ml-2">
-                                <li class="text-danger">{{ $errors->get('credentials')[0] }}</li>
-                            </div>
-                        @enderror
-                        <form>
-                            <div class="card-body">
-                                <div class="edit-profile__body">
-                                    <div class="form-group mb-20">
-                                        <label for="username">Email Address</label>
-                                        <x-input property='user.email' type="email"
-                                            placeholder="johndoe@example.com" />
-                                        <x-input-error :messages="$errors->get('user.email')" class="mt-2" />
-                                    </div>
-                                    <div class="form-group mb-15">
-                                        <label for="password-field">password</label>
-                                        <div class="position-relative">
-                                            <x-input property='user.password' type="password" placeholder="******" />
-                                            <x-input-error :messages="$errors->get('user.password')" class="mt-2" />
-                                            <!-- <div
-                                                class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                    <div class="signUp-condition signIn-condition">
-                                        <div class="checkbox-theme-default custom-checkbox ">
-                                            <input class="checkbox" type="checkbox" id="check-1">
-                                            <label for="check-1">
-                                                <span class="checkbox-text">Keep me logged in</span>
-                                            </label>
-                                        </div>
-                                        <a href="{{ route('password.request') }}">forgot password</a>
-                                    </div>
-                                    <div class="button-group d-flex pt-1 justify-content-center">
-                                        <x-lv-button class="w-100" functionName="loginUser" text="Sign In" />
-                                    </div>
-                                    <div
-                                        class="signUp-topbar d-flex align-items-center justify-content-center mt-20 mb-1">
-                                        <p class="mb-0">
-                                            Don't have an account?
-                                            <a href="{{ route('register') }}">Sign Up</a>
-                                        </p>
-                                    </div>
-                                    <p class="social-connector text-center mb-sm-25 mb-15  mt-sm-30 mt-20">
-                                        <span>Or</span>
-                                    </p>
-                                    <div class="button-group d-flex align-items-center justify-content-center">
-                                        <ul class="signUp-socialBtn">
-                                            <li>
-                                                <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
-                                                    class=" radius-md wh-48 content-center">
-                                                    <img class="svg" src="{{ asset('img/svg/google.svg') }}"
-                                                        alt="img" /></a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('socialite.redirect', ['to' => 'facebook']) }}"
-                                                    class=" radius-md wh-48 content-center">
-                                                    <img class="svg" src="{{ asset('img/svg/facebook.svg') }}"
-                                                        alt="img" /></a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('socialite.redirect', ['to' => 'github']) }}"
-                                                    class="radius-md wh-48 content-center">
-                                                    <img class="svg" src="{{ asset('img/svg/github.svg') }}"
-                                                        alt="img" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
+        <div class="text-center mb-10">
+            <h1 class="text-dark mb-3">Sign In to {{ config('app.name') }}</h1>
+            <div class="text-gray-400 fw-bold fs-4">New Here?
+                <a href="{{ route('register') }}" class="link-primary fw-bolder">Create an Account</a>
             </div>
         </div>
-    </div>
+
+        @if (session('status'))
+            <x-session-status :dismissable="true" />
+        @endif
+
+        @error('credentials')
+            <x-app.auth-validation-errors class="mb-10" />
+        @enderror
+
+        <div class="fv-row mb-10">
+            <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+            <x-form.input property='user.email' type="email" placeholder="johndoe@example.com" />
+            <x-form.input-error :messages="$errors->get('user.email')" class="mt-2" />
+        </div>
+
+        <div class="fv-row mb-10">
+            <div class="d-flex flex-stack mb-2">
+                <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+                <a href="{{ route('password.request') }}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+            </div>
+            <x-form.input property='user.password' type="password" placeholder="******" />
+            <x-form.input-error :messages="$errors->get('user.password')" class="mt-2" />
+        </div>
+
+        <div class="text-center">
+            <x-form.submit-button type="primary" class="w-50" functionName="loginUser" btnText="Sign In" />
+
+            <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
+
+            <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
+                class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                <img alt="Logo" src="{{ asset('backend/assets/media/svg/brand-logos/google-icon.svg') }}"
+                    class="h-20px me-3" />Continue with Google
+            </a>
+            <a href="{{ route('socialite.redirect', ['to' => 'facebook']) }}"
+                class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                <img alt="Logo" src="{{ asset('backend/assets/media/svg/brand-logos/facebook-4.svg') }}"
+                    class="h-20px me-3" />Continue with Facebook
+            </a>
+            <a href="{{ route('socialite.redirect', ['to' => 'github']) }}"
+                class="btn btn-flex flex-center btn-light btn-lg w-100">
+                <img alt="Logo" src="{{ asset('backend/assets/media/svg/brand-logos/github.svg') }}"
+                    class="h-20px me-3" />Continue with Github
+            </a>
+        </div>
+    </form>
 </div>
