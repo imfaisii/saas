@@ -1,21 +1,6 @@
 /* template css for dashboard */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import "./assets/bootstrap/bootstrap.css";
-@import "./assets/fontawesome.css";
-@import "./assets/daterangepicker.css";
-@import "./assets/footable.standalone.min.css";
-@import "./assets/fullcalendar@5.2.0.css";
-@import "./assets/jquery-jvectormap-2.0.5.css";
-@import "./assets/jquery.mCustomScrollbar.min.css";
-@import "./assets/leaflet.css";
-@import "./assets/line-awesome.min.css";
-@import "./assets/magnific-popup.css";
-@import "./assets/MarkerCluster.css";
-@import "./assets/MarkerCluster.Default.css";
-@import "./assets/select2.min.css";
-@import "./assets/slick.css";
-@import "./assets/star-rating-svg.css";
-@import "./assets/trumbowyg.min.css";
-@import "./assets/wickedpicker.min.css";
-@import "./assets/style.css";
-@import "./assets/custom.css";
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+@import "./build/plugins.bundle.css";
+@import "./build/style.bundle.css";
