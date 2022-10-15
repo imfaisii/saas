@@ -11,7 +11,7 @@ Route::group([
     'middleware' => ['auth', 'verified'],
     'as' => 'dashboard.'
 ], function () {
-    Route::get('/', fn () => redirect()->route('dashboard.home'));
+    Route::get('/', fn () => redirect()->route('dashboard.home'))->name('welcome');
     Route::get('/dashboard', fn () => view('pages.dashboard.home.index'))->name('home');
 
     // User Profile

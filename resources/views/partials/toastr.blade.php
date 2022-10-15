@@ -1,10 +1,10 @@
 @push('extended-css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/css/toastr.min.css') }}">
 @endpush
 
 @push('extended-js')
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/toastr.min.js') }}"></script>
     <script>
         function makeToastr(type, message) {
             if (type == 'success') toastr.success(message)

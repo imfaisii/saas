@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Traits\Toastify;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
@@ -41,7 +42,7 @@ class Register extends Component
     public function storeUser()
     {
         $this->validate();
-
+        $this->user['password'] = Hash::make($this->user['password']);
         try {
             $user = User::create($this->user)->assignRole(Role::whereName('user')->first());
 

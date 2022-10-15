@@ -1,6 +1,7 @@
-/* template css for login and registration */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import "./assets/bootstrap/bootstrap.css";
-@import "./assets/fontawesome.css";
-@import "./assets/style.css";
-@import "./assets/custom.css";
+/* Guest User CSS */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+/* Stylesheets */
+
+@import "./css/custom.bundle.css";

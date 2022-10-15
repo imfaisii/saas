@@ -1,121 +1,87 @@
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-grid align-items-center">
-    <div class="signUp-admin-right p-md-40 p-10" style="padding-top: 20px !important;">
-        <div class="row justify-content-center">
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="edit-profile mt-md-25 mt-0">
-                    <div class="card border-0">
-                        <div class="card-header border-0 pb-md-15 pb-10 pt-md-20 pt-10">
-                            <div class="edit-profile__title">
-                                <h6>
-                                    Sign up to
-                                    <span class="color-primary">Admin</span>
-                                </h6>
-                            </div>
-                        </div>
-                        <form>
-                            <div class="card-body">
-                                <div class="row edit-profile__body">
-                                    <div class="col-md-6 mb-1">
-                                        <div class="form-group mb-20">
-                                            <label for="name">name</label>
-                                            <x-input property='user.name' type="text" placeholder="John Doe" />
-                                            <x-input-error :messages="$errors->get('user.name')" class="mt-2" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <div class="form-group mb-20">
-                                            <label for="email">Email Adress</label>
-                                            <x-input property='user.email' type="email"
-                                                placeholder="name@example.com" />
-                                            <x-input-error :messages="$errors->get('user.email')" class="mt-2" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <div class="form-group mb-15">
-                                            <label for="password-field">password</label>
-                                            <div class="position-relative">
-                                                <x-input property='user.password' type="password"
-                                                    placeholder="******" />
-                                                <x-input-error :messages="$errors->get('user.password')" class="mt-2" />
-                                                <!-- <span
-                                                class="fa fa-fw fa-eye-slash text-light fs-16 field-icon toggle-password2">
-                                            </span> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <div class="form-group mb-15">
-                                            <label for="password-field">
-                                                confirm password</label>
-                                            <div class="position-relative">
-                                                <x-input property='user.password_confirmation' type="password"
-                                                    placeholder="******" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mb-1 ml-1">
-                                        <div class="signUp-condition signIn-condition mb-0">
-                                            <div class="checkbox-theme-default custom-checkbox ">
-                                                <input wire:model.lazy='user.terms' class="checkbox" type="checkbox"
-                                                    id="check-1">
-                                                <label for="check-1">
-                                                    <span class="checkbox-text">I agree the with the
-                                                        <a href="#">terms and
-                                                            conditions</a>
-                                                        and
-                                                        <a href="#">privacy policy</a>
-                                                    </span>
-                                                </label>
-                                                <x-input-error :messages="$errors->get('user.terms')" class="mt-2" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mb-1 ml-1">
-                                        <div
-                                            class="button-group d-flex pt-1 justify-content-md-start justify-content-center">
-                                            <x-lv-button class="w-100" functionName="storeUser"
-                                                text="Create Account" />
-                                        </div>
-                                        <div
-                                            class="signUp-topbar d-flex align-items-center justify-content-center mt-20 mb-1">
-                                            <p class="mb-0">
-                                                Already have an account?
-                                                <a href="{{ route('login') }}">Sign In</a>
-                                            </p>
-                                        </div>
-                                        <p class="social-connector text-center mb-sm-25 mb-15  mt-sm-30 mt-20">
-                                            <span>Or</span>
-                                        </p>
-                                        <div class="button-group d-flex align-items-center justify-content-center">
-                                            <ul class="signUp-socialBtn">
-                                                <li>
-                                                    <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
-                                                        class=" radius-md wh-48 content-center">
-                                                        <img class="svg" src="{{ asset('img/svg/google.svg') }}"
-                                                            alt="img" /></a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('socialite.redirect', ['to' => 'facebook']) }}"
-                                                        class=" radius-md wh-48 content-center">
-                                                        <img class="svg" src="{{ asset('img/svg/facebook.svg') }}"
-                                                            alt="img" /></a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('socialite.redirect', ['to' => 'github']) }}"
-                                                        class="radius-md wh-48 content-center">
-                                                        <img class="svg" src="{{ asset('img/svg/github.svg') }}"
-                                                            alt="img" />
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+    <!--begin::Form-->
+    <form class="form w-100" novalidate="novalidate">
+        <div class="mb-10 text-center">
+            <h1 class="text-dark mb-3">Create an Account</h1>
+            <div class="text-gray-400 fw-bold fs-4">Already have an account?
+                <a href="{{ route('login') }}" class="link-primary fw-bolder">Sign in here</a>
             </div>
         </div>
-    </div>
+        <div class="d-flex justify-content-around mb-10 mx-10">
+            <a href="{{ route('socialite.redirect', ['to' => 'github']) }}"
+                class="btn btn-outline btn-outline-dashed btn-outline-default btn-active-light-dark btn-hover-scale">
+                <img class="svg" src="{{ asset('backend/assets/media/svg/brand-logos/github.svg ') }}"
+                    alt="img" />
+            </a>
+            <a href="{{ route('socialite.redirect', ['to' => 'facebook']) }}"
+                class="btn btn-outline btn-outline-dashed btn-outline-default btn-active-light-dark btn-hover-scale">
+                <img class="svg" height="24"
+                    src="{{ asset('backend/assets/media/svg/brand-logos/facebook-2.svg ') }}" alt="img" />
+            </a>
+            <a href="{{ route('socialite.redirect', ['to' => 'google']) }}"
+                class="btn btn-outline btn-outline-dashed btn-outline-default btn-active-light-dark btn-hover-scale">
+                <img class="svg" src="{{ asset('backend/assets/media/svg/brand-logos/google-icon.svg') }}"
+                    alt="img" />
+            </a>
+        </div>
+        <div class="d-flex align-items-center mb-10">
+            <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+            <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+            <div class="border-bottom border-gray-300 mw-50 w-100"></div>
+        </div>
+        <div class="fv-row mb-7">
+            <label class="form-label fw-bolder text-dark fs-6">Name</label>
+            <x-form.input property='user.name' type="text" placeholder="John Doe" />
+            <x-form.input-error :messages="$errors->get('user.name')" class="mt-2" />
+        </div>
+        <div class="fv-row mb-7">
+            <label class="form-label fw-bolder text-dark fs-6">Email</label>
+            <x-form.input property='user.email' type="email" placeholder="name@example.com" />
+            <x-form.input-error :messages="$errors->get('user.email')" class="mt-2" />
+        </div>
+        <div class="mb-10 fv-row" data-kt-password-meter="true">
+            <div class="mb-1">
+                <label class="form-label fw-bolder text-dark fs-6">Password</label>
+                <div class="position-relative mb-3">
+                    <x-form.input property='user.password' type="password" placeholder="******" />
+                    <span
+                        class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2 
+                        @error('user.password')
+                            align-items-baseline
+                        @enderror"
+                        @error('user.password')
+                        style="width: calc(3.3em + 1.1rem + 2px) !important;height: calc(1em + 1.1rem + 14px) !important;"
+                        @enderror
+                        data-kt-password-meter-control="visibility">
+                        <i class="bi bi-eye-slash fs-2"></i>
+                        <i class="bi bi-eye fs-2 d-none"></i>
+                    </span>
+                    <x-form.input-error :messages="$errors->get('user.password')" class="mt-2" />
+                </div>
+                <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
+                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                    <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                </div>
+            </div>
+            <div class="text-muted">Use 8 or more characters.</div>
+        </div>
+        <div class="fv-row mb-5">
+            <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+            <x-form.input property='user.password_confirmation' type="password" placeholder="******" />
+        </div>
+        <div class="fv-row mb-10">
+            <label class="form-check form-check-custom form-check-solid form-check-inline">
+                <input wire:model.lazy="user.terms" class="form-check-input" type="checkbox" name="toc"
+                    value="1" />
+                <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
+                    <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
+            </label>
+            <x-form.input-error :messages="$errors->get('user.terms')" class="mt-2" />
+        </div>
+        <div class="text-center">
+            <x-form.submit-button type="primary" class="w-50" functionName="storeUser" btnText="Create Account" />
+        </div>
+    </form>
 </div>

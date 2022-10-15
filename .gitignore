@@ -14,3 +14,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# ignoring local files
+/public/dashboard/template
+/public/dashboard/demo1
