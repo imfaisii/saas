@@ -1,6 +1,6 @@
 <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
     <!--begin::Form-->
-    <form class="form w-100" novalidate="novalidate">
+    <form wire:submit.prevent='storeUser' class="form w-100" novalidate="novalidate">
         <div class="mb-10 text-center">
             <h1 class="text-dark mb-3">Create an Account</h1>
             <div class="text-gray-400 fw-bold fs-4">Already have an account?
