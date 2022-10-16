@@ -1,5 +1,5 @@
 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-    <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
+    <form wire:submit.prevent='loginUser' class="form w-100" novalidate="novalidate">
         <div class="text-center mb-10">
             <h1 class="text-dark mb-3">Sign In to {{ config('app.name') }}</h1>
             <div class="text-gray-400 fw-bold fs-4">New Here?
