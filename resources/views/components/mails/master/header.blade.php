@@ -1,9 +1,12 @@
-@props(['logoUrl'])
+@props(['logoUrl', 'subImageUrl'])
 
-<tr>
-    <td align="center" valign="center" style="text-align:center; padding: 40px">
-        <a href="{{ config('app.name') }}" rel="noopener" target="_blank">
-            <img style="height: 80px;width: 80px;" alt="Logo" src="{{ $logoUrl }}" />
-        </a>
-    </td>
-</tr>
+<div style="margin-bottom: 10px">
+    <a href="{{ config('app.url') }}" rel="noopener" target="_blank">
+        <img alt="Logo" src="{{ $logoUrl ?? 'https://innovativeappstudio.website/logo-1.svg' }}"
+            style="height: 35px" />
+    </a>
+</div>
+
+<div style="margin-bottom: 15px">
+    <img alt="Logo" src="{{ $subImageUrl ?? 'https://innovativeappstudio.website/icon-positive-vote-1.svg' }}" />
+</div>

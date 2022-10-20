@@ -3,6 +3,7 @@
 @push('extended-css')
     <script src="{{ asset('vendor/js/vue2.6.0.min.js') }}"></script>
     <script src="{{ asset('vendor/js/vee-validate.min.js') }}"></script>
+    <script src="{{ asset('vendor/js/axios.min.js') }}"></script>
 @endpush
 
 @section('content')
@@ -27,6 +28,9 @@
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                     </span>
                 </button>
+                <button @click="logout" type="button" class="btn btn-lg btn-danger fw-bolder me-4">
+                    <span class="indicator-label">Log Out</span>
+                </button>
             </form>
         </div>
     </div>
@@ -49,6 +53,17 @@
                     sendLink() {
                         this.loading = true
                         this.$refs.resendLinkForm.submit()
+                    },
+                    logout() {
+                        axios.post("{{ route('logout') }}", {
+                                token: "{{ csrf_token() }}"
+                            })
+                            .catch(function(error) {
+                                console.log(error)
+                            })
+                            .finally(() => {
+                                window.location.href = "{{ route('login') }}"
+                            })
                     }
                 }
             })

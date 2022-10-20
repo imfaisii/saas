@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1046f7e6d9ce5d52cdd52b30ffa55334",
+    "content-hash": "3028497f69b40a851012cba9a3831447",
     "packages": [
         {
             "name": "brick/math",
@@ -1405,6 +1405,59 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.2"
             },
             "time": "2022-03-23T12:38:24+00:00"
+        },
+        {
+            "name": "laraveldaily/laravel-permissions-ui",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelDaily/laravel-permissions-ui.git",
+                "reference": "398b96ddcbadd4d6370a3e019ca337ffb6474ab6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelDaily/laravel-permissions-ui/zipball/398b96ddcbadd4d6370a3e019ca337ffb6474ab6",
+                "reference": "398b96ddcbadd4d6370a3e019ca337ffb6474ab6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "spatie/laravel-permission": "^5.5"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelDaily\\PermissionsUI\\PermissionsUIServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelDaily\\PermissionsUI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Povilas Korop",
+                    "email": "povilas@laraveldaily.com"
+                }
+            ],
+            "description": "A Laravel package for adding UI for spatie/Laravel-permission package.",
+            "homepage": "https://github.com/LaravelDaily/laravel-permissions-ui",
+            "support": {
+                "issues": "https://github.com/LaravelDaily/laravel-permissions-ui/issues",
+                "source": "https://github.com/LaravelDaily/laravel-permissions-ui/tree/0.1.0"
+            },
+            "time": "2022-10-16T18:23:23+00:00"
         },
         {
             "name": "league/commonmark",
